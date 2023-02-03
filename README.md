@@ -1,2 +1,2 @@
 # power-stones-site
-Site do jogo de terror Power Stones.
+Site da light novel interativa de Power Stones
