@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: rgb(255, 199, 252);
+}
+
+@font-face {
+    font-family: PowerStones;
+    src: url(../assets/fonts/Gecade.ttf);
+}
+
+html, body {
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+body {
+    font-family: PowerStones, Arial, Helvetica;
+}
+
+.page-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .page-title h2 {
+        font-size: 2.7rem;
+        font-weight: 500;
+    }
