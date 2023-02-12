@@ -17,7 +17,7 @@
                             <a class="nav-link" href="#visual-novel-container">Visual Novel</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">Sobre</a>
+                            <a class="nav-link" href="#about">Sobre</a>
                         </li>
                     </ul>
                 </div>

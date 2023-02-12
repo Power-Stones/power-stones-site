@@ -34,3 +34,13 @@ body {
         font-size: 2.7rem;
         font-weight: 500;
     }
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+    a:hover {
+        color: white;
+        text-decoration: underline;
+    }

@@ -4,7 +4,7 @@
             <div class="home-presentation-content">
                 <img src="../assets/power-stones-title-teste-2.png" class="img-fluid site-logo" />
                 <p class="subtitle pb-5">In the world</p>
-                <p class="home-phrase">“Existem certas coisas no universo que não podem ser explicadas, apenas vividas”</p>
+                <p class="home-phrase">“Existem coisas no universo que não podem ser explicadas, apenas vividas”</p>
             </div>
         </div>
     </div>

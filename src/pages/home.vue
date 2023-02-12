@@ -4,6 +4,7 @@
         <homePresentation />
         <charactersComponent />
         <visualNovelHomeComponent />
+        <aboutComponent />
         <footerSite />
     </div>
 </template>
@@ -13,6 +14,7 @@ import homePresentation from "../components/homePresentation.vue";
 import charactersComponent from "../components/charactersComponent.vue";
 import footerSite from "../components/footerSite.vue";
 import visualNovelHomeComponent from "../components/visualNovelHomeComponent.vue";
+import aboutComponent from "../components/aboutComponent.vue";
 
 export default {
     name: "homeSite",
@@ -21,6 +23,7 @@ export default {
         homePresentation,
         charactersComponent,
         visualNovelHomeComponent,
+        aboutComponent,
         footerSite
     }
 }

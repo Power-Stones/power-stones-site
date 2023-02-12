@@ -5,7 +5,7 @@
                 <img :src="image" class="img-fluid" />
             </div>
             <div class="col-md-6 col-sm-12">
-                <div class="character-informations">
+                <div class="character-informations" :class="controlClass ? 'text-right' : 'text-left'">
                     <p class="character-name">{{ name }}</p>
                     <p class="character-text">{{ text }}</p>
                 </div>
