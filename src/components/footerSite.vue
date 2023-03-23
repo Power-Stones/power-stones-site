@@ -3,7 +3,7 @@
         <div class="container">
             <div class="footer-container">
                 <div class="footer-logo">
-                    <img src="../assets/power-stones-title-teste-2.png">
+                    <img src="../assets/power-stones-teste-5.png">
                     <p>In the World</p>
                 </div>
                 <div class="footer-group">
