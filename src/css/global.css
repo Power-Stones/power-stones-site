@@ -6,6 +6,7 @@
 
 :root {
     --primary-color: rgb(255, 199, 252);
+    --white: #fff;
 }
 
 @font-face {

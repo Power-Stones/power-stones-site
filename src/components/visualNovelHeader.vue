@@ -36,4 +36,10 @@ export default {
     .user-container i {
         font-size: 1.4rem;
     }
+
+@media (max-width: 970px) {
+    .user-container {
+        display: none;
+    }
+}
 </style>
