@@ -8,12 +8,18 @@
                         <img src="../assets/power-stones-logo.png" class="inicial-logo">
                     </div>
                     <div class="actions-menu">
-                        <ul>
-                            <li>Novo jogo</li>
-                            <li>Continuar</li>
-                            <li>Opções</li>
-                            <li>Sobre</li>
-                        </ul>
+                        <div class="actions-menu-container">
+                            <i class="fas fa-arrow-left" id="return-button" v-on:click="resetMenuNavigation()"></i>
+                            <ul class="main-menu animate__animated animate__faster">
+                                <li>Novo jogo</li>
+                                <li>Continuar</li>
+                                <li v-on:click="goToOptions()">Opções</li>
+                                <li>Sobre</li>
+                            </ul>
+                            <ul class="options-menu animate__animated animate__faster">
+                                <li v-on:click="toggleFullscreen()" id="toggle-fullscreen">Tela cheia</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="hero-div">
@@ -24,11 +30,87 @@
     </div>
 </template>
 <script>
+import $ from 'jquery';
+
 export default {
-    name: "visualNovelComponent"
+    name: "visualNovelComponent",
+    methods: {
+        goToOptions: function () {
+            let mainMenu = $(".main-menu");
+            let optionsMenu = $(".options-menu");
+            let returnButton = $("#return-button");
+            
+            this.resetMenuClass();
+
+            mainMenu.addClass("animate__fadeOutLeft");
+            setTimeout(() => {
+                mainMenu.hide();
+                optionsMenu.show();
+                setTimeout(() => {
+                    optionsMenu.addClass("animate__fadeInRight").css("opacity", 1);
+                    returnButton.show();
+                }, 1)
+            }, 200);
+        },
+        resetMenuClass: function () {
+            let mainMenu = $(".main-menu");
+            let optionsMenu = $(".options-menu");
+
+            mainMenu.removeClass("animate__fadeInLeft").removeClass("animate__fadeOutLeft");
+            optionsMenu.removeClass("animate__fadeInRight").removeClass("animate__fadeOutRight");
+        },
+        resetMenuNavigation: function () {
+            let mainMenu = $(".main-menu");
+            let optionsMenu = $(".options-menu");
+            let returnButton = $("#return-button");
+
+            this.resetMenuClass();
+
+            optionsMenu.addClass("animate__fadeOutRight");
+            setTimeout(() => {
+                mainMenu.show();
+                returnButton.hide();
+                optionsMenu.hide();
+                setTimeout(() => {
+                    mainMenu.addClass("animate__fadeInLeft");
+                }, 1)
+            }, 200);
+        },
+        toggleFullscreen: function () {
+            let toggleFullscreen = $("#toggle-fullscreen");
+            toggleFullscreen.toggleClass("active");
+
+            if (toggleFullscreen.hasClass("active")) {
+                if (document.documentElement.requestFullscreen) {
+                    document.documentElement.requestFullscreen();
+                } else if (document.documentElement.mozRequestFullScreen) { /* Firefox */
+                    document.documentElement.mozRequestFullScreen();
+                } else if (document.documentElement.webkitRequestFullscreen) { /* Chrome, Safari e Opera */
+                    document.documentElement.webkitRequestFullscreen();
+                } else if (document.documentElement.msRequestFullscreen) { /* IE/Edge */
+                    document.documentElement.msRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozCancelFullScreen) { /* Firefox */
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) { /* Chrome, Safari e Opera */
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) { /* IE/Edge */
+                    document.msExitFullscreen();
+                }
+            }
+        }
+    }
 }
 </script>
 <style scoped>
+
+.options-menu {
+    display: none;
+    opacity: 0;
+}
 .visual-novel-frame {
     width: 95vw;
     max-width: 2000px;
@@ -91,6 +173,21 @@ export default {
     width: calc(15vw + 7rem);
 }
 
+.actions-menu-container {
+    position: relative;
+}
+
+
+#return-button {
+    position: absolute;
+    top: -50px;
+    left: 10px;
+    color: var(--white);
+    cursor: pointer;
+    display: none;
+}
+
+
 .actions-menu {
     color: var(--white);
     width: 100%;
@@ -111,8 +208,8 @@ export default {
         transition: all 0.4s;
     }
 
-        .actions-menu ul li:hover {
+        .actions-menu ul li:hover, .active {
             background: rgba(255, 255, 255, 0.2);
-            padding-left: 1rem;
+            padding-left: 1rem !important;
         }
 </style>
