@@ -38,7 +38,7 @@ export default {
     }
 
 @media (max-width: 970px) {
-    .user-container {
+    .user-container, .visual-novel-header-container {
         display: none;
     }
 }

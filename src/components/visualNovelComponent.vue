@@ -162,6 +162,10 @@ export default {
 
 @media (max-width: 970px) {
     .visual-novel-frame {
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        border-radius: 0;
     }
 
     .hero-div {
