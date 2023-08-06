@@ -78,17 +78,12 @@ export default {
         width: 100%;
     }
 
-@media (max-width: 450px) {
-    .hero-div {
-        display: none;
-    }
-}
-
 @media (max-width: 970px) {
     .visual-novel-frame {
-        transform: rotate(90deg);
-        width: calc(100vh - 20px);
-        height: calc(100vw - 20px);
+    }
+
+    .hero-div {
+        display: none;
     }
 }
 
