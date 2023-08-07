@@ -135,7 +135,10 @@ export default {
                         ],
                         title: "Ana",
                         text: "Como você pode fazer isso, Jack? Eu ... Eu confiei em você! Eu vivia com desespero e desgosto desse doutor Carlos, e agora você faz isso? A gente não pode confiar em ninguém mais!",
-                        is_final_scene: 0
+                        is_final_scene: 0,
+                        have_next_scene: 0,
+                        text_choice_1: "",
+                        text_choice_2: ""
                     },
                     {
                         background: "https://img.freepik.com/fotos-premium/tarde-por-do-sol-ceu-nuvens-paisagem-anime-background-generative-ai_117038-3743.jpg?w=2000",
@@ -148,7 +151,31 @@ export default {
                         ],
                         title: "Jack",
                         text: "Você entendeu errado Ana! A pedra está te controlando! Por favor ... Volte para si!",
-                        is_final_scene: 1
+                        is_final_scene: 0,
+                        have_next_scene: 1,
+                        text_choice_1: "",
+                        text_choice_2: ""
+                    },
+                    {
+                        background: "https://img.freepik.com/fotos-premium/tarde-por-do-sol-ceu-nuvens-paisagem-anime-background-generative-ai_117038-3743.jpg?w=2000",
+                        characters: [
+                            {
+                                src: "https://uploaddeimagens.com.br/images/004/568/129/full/taiga-teste.png?1691342202",
+                                active: 0,
+                                direction: "left"
+                            },
+                            {
+                                src: "https://uploaddeimagens.com.br/images/004/568/129/full/taiga-teste.png?1691342202",
+                                active: 1,
+                                direction: "right"
+                            }
+                        ],
+                        title: "Jack",
+                        text: "Eu sei que você ainda está aí, por favor, escute minha voz!",
+                        is_final_scene: 0,
+                        have_next_scene: 0,
+                        text_choice_1: "",
+                        text_choice_2: ""
                     }
                 ]
             }
