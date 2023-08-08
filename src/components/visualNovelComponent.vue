@@ -68,11 +68,22 @@
                                 }"
                             />
                         </div>
-                        <div class="interaction-container">
+                        <div class="interaction-container" :style="currentLevel.scenes[currentScene - 1] != undefined && currentLevel.scenes[currentScene - 1].next_depends_choice == 1 ? 'display: none;' : 'display: flex;'">
                             <h6>{{ currentLevel.scenes[currentScene].title }}</h6>
-                            <p class="scene-text" id="scene-text"></p>
-                            <i class="fas fa-caret-right next-scene" v-on:click="nextScene()"></i>
+                            <p class="scene-text" id="scene-text" :style="currentLevel.scenes[currentScene].text == '' ? 'display: none;' : ''"></p>
+                            <div class="choice-container" :style="currentLevel.scenes[currentScene].text == '' && currentLevel.scenes[currentScene].text_choice_1 != '' ? 'display: block;' : 'display: none;'">
+                                <ul>
+                                    <li v-on:click="chooseChoice(1)">
+                                        <p class="scene-text">{{ currentLevel.scenes[currentScene].text_choice_1 }}</p>
+                                    </li>
+                                    <li v-on:click="chooseChoice(2)">
+                                        <p class="scene-text">{{ currentLevel.scenes[currentScene].text_choice_2 }}</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <i class="fas fa-caret-right next-scene" v-on:click="nextScene()" v-if="currentLevel.scenes[currentScene].text_choice_1 == '' && allowToNextScene"></i>
                         </div>
+                        <i class="fas fa-caret-right next-scene-final" v-on:click="nextScene()" :style="currentLevel.scenes[currentScene - 1] != undefined && currentLevel.scenes[currentScene - 1].next_depends_choice == 1 ? 'display: block;' : 'display: none;'"></i>
                     </div>
                 </div>
             </div>
@@ -351,6 +362,15 @@ export default {
         }
     },
     methods: {
+        chooseChoice: function (choiceNumber) {
+            console.log(choiceNumber)
+            if (choiceNumber == 1) {
+                this.nextScene();
+            } else if (choiceNumber == 2) {
+                this.endChapter();
+            }
+            
+        },
         mountCharactersAnimationsClasses: function () {
             let interval = setInterval(() => {
                 if ($(".chapter").is(":visible")) {
@@ -713,8 +733,8 @@ export default {
 }
 
 .informations-div, .hero-div {
-    min-width: 250px;
-    width: 95vw;
+    min-width: 50%;
+    width: 95vh;
     max-width: 50%;
     z-index: 2;
     display: flex;
@@ -799,6 +819,26 @@ export default {
     line-height: 100%;
 }
 
+.choice-container {
+    display: flex;
+    flex-direction: column;
+}
+
+    .choice-container ul {
+        padding-left: 0.8em;
+    }
+
+        .choice-container ul li {
+            cursor: pointer;
+            padding: 0.2rem;
+            width: 30%;
+            line-height: .6em;
+        }
+
+            .choice-container ul li:hover {
+                background: rgba(0, 0, 0, 0.1);
+            }
+
 @keyframes typing {
     from { width: 0; }
     to { width: 100%; }
@@ -812,6 +852,15 @@ export default {
     color: #852b80;
 }
 
+.next-scene-final {
+    color: var(--white);
+    font-size: 3em;
+    position: absolute;
+    right: 2vw;
+    bottom: 2vh;
+    cursor: pointer;
+}
+
 .characters {
     position: absolute;
     width: 100%;
@@ -822,7 +871,7 @@ export default {
 
     .characters img {
         position: absolute;
-        width: 15vw;
+        width: 12vw;
         bottom: 0;
         filter: brightness(0.7);
     }
@@ -978,7 +1027,8 @@ export default {
 }
 
     .hero-div img {
-        width: 100%;
+        width: calc(100% - 6rem);
+        max-width: 600px;
     }
 
 @media (max-width: 970px) {
