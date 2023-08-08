@@ -43,21 +43,28 @@
                 </div>
             </div>
             <div class="chapter animate__animated">
-                <img :src="currentLevel.scenes[currentScene].background" class="chapter-background" />
+                <transition name="fade" v-if="currentLevel.scenes[currentScene].have_next_scene == 0">
+                    <img :src="currentLevel.scenes[currentScene].background" :key="currentLevel.scenes[currentScene].id_scene" class="chapter-background" />
+                </transition>
+                <img v-else :src="currentLevel.scenes[currentScene].background" :key="currentLevel.scenes[currentScene].id_scene" class="chapter-background" />
+                
                 <div class="chapter-container">
                     <div class="chapter-name">
                         <img src="../assets/power-stones-logo.png">
                         <p>{{ currentLevel.chapter_id }} - {{ currentLevel.title }}</p>
                     </div>
-                    <div class="interactive-scene-container" v-if="!reloadInterativeScene">
+                    <div class="interactive-scene-container">
                         <div class="characters">
                             <img v-for="(character, index) in currentLevel.scenes[currentScene].characters" 
                                 :key="index" 
                                 :src="character.src"
                                 :class="{
-                                    'character-active': character.active == 1,
-                                    'from-right': character.direction == 'right',
-                                    'from-left': character.direction == 'left'
+                                    'character-active': character.active === 1,
+                                    'from-right': character.direction === 'right',
+                                    'from-left': character.direction === 'left',
+                                    'from-right-2': character.direction === 'right2',
+                                    'from-left-2': character.direction === 'left2',
+                                    'without-animation': character.withoutAnimation === 1
                                 }"
                             />
                         </div>
@@ -101,10 +108,8 @@ export default {
     name: "visualNovelComponent",
     data() {
         return {
-            isPlayingLevel: false,
             allowToNextScene: false,
             currentScene: 0,
-            reloadInterativeScene: false,
             userNovelStatus: {
                 user_id: 1,
                 last_level_completed: 0,
@@ -117,20 +122,43 @@ export default {
                 subtitle: "Capítulo 1",
                 title: "Jack! Mike! Tony!",
                 is_final_level: 1,
-                level_background: "https://images5.alphacoders.com/132/1322530.png",
+                level_background: "https://images3.alphacoders.com/132/1322308.jpeg",
                 scenes: [
                     {
+                        id_scene: 0,
                         background: "https://i.pinimg.com/originals/3c/7a/fc/3c7afc1b68c0f8cc367dd9d0f1f383de.jpg",
                         characters: [
                             {
                                 src: "https://uploaddeimagens.com.br/images/004/568/129/full/taiga-teste.png?1691342202",
                                 active: 1,
-                                direction: "right"
+                                direction: "left",
+                                entrance: 1,
+                                exit: 0,
+                                withoutAnimation: 0
                             },
                             {
-                                src: "https://uploaddeimagens.com.br/images/004/568/129/full/taiga-teste.png?1691342202",
+                                src: "",
                                 active: 0,
-                                direction: "left"
+                                direction: "",
+                                entrance: 0,
+                                exit: 0,
+                                withoutAnimation: 0
+                            },
+                            {
+                                src: "",
+                                active: 0,
+                                direction: "",
+                                entrance: 0,
+                                exit: 0,
+                                withoutAnimation: 0
+                            },
+                            {
+                                src: "",
+                                active: 0,
+                                direction: "",
+                                entrance: 0,
+                                exit: 0,
+                                withoutAnimation: 0
                             }
                         ],
                         title: "Ana",
@@ -141,12 +169,40 @@ export default {
                         text_choice_2: ""
                     },
                     {
+                        id_scene: 1,
                         background: "https://img.freepik.com/fotos-premium/tarde-por-do-sol-ceu-nuvens-paisagem-anime-background-generative-ai_117038-3743.jpg?w=2000",
                         characters: [
                             {
                                 src: "https://uploaddeimagens.com.br/images/004/568/129/full/taiga-teste.png?1691342202",
+                                active: 0,
+                                direction: "left",
+                                entrance: 0,
+                                exit: 0,
+                                withoutAnimation: 1
+                            },
+                            {
+                                src: "",
+                                active: 0,
+                                direction: "",
+                                entrance: 0,
+                                exit: 0,
+                                withoutAnimation: 0
+                            },
+                            {
+                                src: "",
+                                active: 0,
+                                direction: "",
+                                entrance: 0,
+                                exit: 0,
+                                withoutAnimation: 0
+                            },
+                            {
+                                src: "https://uploaddeimagens.com.br/images/004/568/129/full/taiga-teste.png?1691342202",
                                 active: 1,
-                                direction: "left"
+                                direction: "right",
+                                entrance: 1,
+                                exit: 0,
+                                withoutAnimation: 0
                             }
                         ],
                         title: "Jack",
@@ -157,22 +213,135 @@ export default {
                         text_choice_2: ""
                     },
                     {
+                        id_scene: 2,
                         background: "https://img.freepik.com/fotos-premium/tarde-por-do-sol-ceu-nuvens-paisagem-anime-background-generative-ai_117038-3743.jpg?w=2000",
                         characters: [
                             {
                                 src: "https://uploaddeimagens.com.br/images/004/568/129/full/taiga-teste.png?1691342202",
                                 active: 0,
-                                direction: "left"
+                                direction: "left",
+                                entrance: 0,
+                                exit: 0,
+                                withoutAnimation: 1
                             },
                             {
                                 src: "https://uploaddeimagens.com.br/images/004/568/129/full/taiga-teste.png?1691342202",
                                 active: 1,
-                                direction: "right"
+                                direction: "left2",
+                                entrance: 1,
+                                exit: 0,
+                                withoutAnimation: 0
+                            },
+                            {
+                                src: "",
+                                active: 0,
+                                direction: "",
+                                entrance: 0,
+                                exit: 0,
+                                withoutAnimation: 0
+                            },
+                            {
+                                src: "https://uploaddeimagens.com.br/images/004/568/129/full/taiga-teste.png?1691342202",
+                                active: 0,
+                                direction: "right",
+                                entrance: 0,
+                                exit: 0,
+                                withoutAnimation: 1
                             }
                         ],
                         title: "Jack",
                         text: "Eu sei que você ainda está aí, por favor, escute minha voz!",
                         is_final_scene: 0,
+                        have_next_scene: 1,
+                        text_choice_1: "",
+                        text_choice_2: ""
+                    },
+                    {
+                        id_scene: 3,
+                        background: "https://img.freepik.com/fotos-premium/tarde-por-do-sol-ceu-nuvens-paisagem-anime-background-generative-ai_117038-3743.jpg?w=2000",
+                        characters: [
+                            {
+                                src: "https://uploaddeimagens.com.br/images/004/568/129/full/taiga-teste.png?1691342202",
+                                active: 0,
+                                direction: "left",
+                                entrance: 0,
+                                exit: 1,
+                                withoutAnimation: 0
+                            },
+                            {
+                                src: "https://uploaddeimagens.com.br/images/004/568/129/full/taiga-teste.png?1691342202",
+                                active: 0,
+                                direction: "left2",
+                                entrance: 0,
+                                exit: 1,
+                                withoutAnimation: 0
+                            },
+                            {
+                                src: "",
+                                active: 0,
+                                direction: "",
+                                entrance: 0,
+                                exit: 0,
+                                withoutAnimation: 0
+                            },
+                            {
+                                src: "https://uploaddeimagens.com.br/images/004/568/129/full/taiga-teste.png?1691342202",
+                                active: 1,
+                                direction: "right",
+                                entrance: 0,
+                                exit: 0,
+                                withoutAnimation: 1
+                            }
+                        ],
+                        title: "Você vai terminar com ela?",
+                        text: "",
+                        is_final_scene: 0,
+                        next_depends_choice: 1,
+                        have_next_scene: 0,
+                        text_choice_1: "Sim",
+                        text_choice_2: "Não"
+                    },
+                    {
+                        id_scene: 4,
+                        background: "https://i.pinimg.com/originals/b5/fd/3f/b5fd3fbe984103e08b9482471484394b.gif",
+                        characters: [
+                            {
+                                src: "",
+                                active: 0,
+                                direction: "",
+                                entrance: 0,
+                                exit: 0,
+                                withoutAnimation: 0
+                            },
+                            {
+                                src: "",
+                                active: 0,
+                                direction: "",
+                                entrance: 0,
+                                exit: 0,
+                                withoutAnimation: 0
+                            },
+                            {
+                                src: "",
+                                active: 0,
+                                direction: "",
+                                entrance: 0,
+                                exit: 0,
+                                withoutAnimation: 0
+                            },
+                            {
+                                src: "https://uploaddeimagens.com.br/images/004/568/129/full/taiga-teste.png?1691342202",
+                                active: 0,
+                                direction: "right",
+                                entrance: 0,
+                                exit: 1,
+                                withoutAnimation: 0
+                            }
+                        ],
+                        title: "",
+                        text: "",
+                        is_final_scene: 1,
+                        next_depends_choice: 0,
                         have_next_scene: 0,
                         text_choice_1: "",
                         text_choice_2: ""
@@ -182,6 +351,26 @@ export default {
         }
     },
     methods: {
+        mountCharactersAnimationsClasses: function () {
+            let interval = setInterval(() => {
+                if ($(".chapter").is(":visible")) {
+                    clearTimeout(interval);
+                    let characters = this.currentLevel.scenes[this.currentScene].characters;
+                    let charactersElements = $(".characters img");
+                    for (let i = 0; i < characters.length; i++) {
+                        let currentCharacter = characters[i];
+                        let classText = "";
+                        if (currentCharacter.entrance == 1) {
+                            classText = "entrance";
+                        }
+                        if (currentCharacter.exit == 1) {
+                            classText = "exit";
+                        }
+                        $(charactersElements[i]).addClass(classText);
+                    }  
+                }
+            }, 10)
+        },  
         restartChapter: function () {
             this.resetAllContainers();
             let endChapter = $(".end-chapter");
@@ -209,17 +398,20 @@ export default {
                     chapter.addClass("animate__fadeIn").css("opacity", 1);
                     setTimeout(() => {
                         this.animateTextWithLineBreaks(this.currentLevel.scenes[this.currentScene].text);
+                        this.mountCharactersAnimationsClasses();
                     }, 300)
                 }, 1)
             }, 300)
         },
         animateTextWithLineBreaks: function (text) {
-            const textArray = text.split(' ');
+            let self = this;
+            let textArray = text.split(' ');
             let lineText = '';
             let currentLine = this.createSpanWithAnimation('');
-            const container = document.getElementById('scene-text');
-            let nextSceneButton = $(".next-scene");
-            nextSceneButton.hide();
+            let container = document.getElementById('scene-text');
+            container.innerHTML = "";
+            
+            self.allowToNextScene = false;
 
             function addWordToLine(wordIndex) {
                 if (wordIndex < textArray.length) {
@@ -236,10 +428,10 @@ export default {
                     }
 
                     container.appendChild(currentLine);
-                    setTimeout(() => addWordToLine(wordIndex + 1), 100); // 100ms de atraso entre as palavras
+                    setTimeout(() => addWordToLine(wordIndex + 1), 1); // 100ms de atraso entre as palavras
 
                     if (wordIndex == textArray.length - 1) {
-                        nextSceneButton.show();
+                        self.allowToNextScene = true;
                     }
                 }
             }
@@ -253,19 +445,17 @@ export default {
             return span;
         },
         nextScene: function () {
-            let characters = $(".characters img");
-            characters.addClass("exit-character");
+            this.allowToNextScene = false;
+            
             if (this.currentLevel.scenes[this.currentScene].is_final_scene == 1) {
-                console.log("entrou")
                 this.endChapter();
                 return;
             } else {
                 setTimeout(() => {
-                    this.reloadInterativeScene = true;
                     setTimeout(() => {
-                        this.reloadInterativeScene = false;
                         setTimeout(() => {
                             this.animateTextWithLineBreaks(this.currentLevel.scenes[this.currentScene].text);
+                            this.mountCharactersAnimationsClasses();
                         }, 1)
                         this.currentScene++;
                     }, 1)
@@ -297,10 +487,6 @@ export default {
             chapter.removeClass("animate__fadeIn").removeClass("animate__fadeOut");
 
             this.currentScene = 0;
-            this.reloadInterativeScene = true;
-            setTimeout(() => {
-                this.reloadInterativeScene = false;
-            }, 1)
         },
         goToHistory: function (history_id) {
             console.log(history_id)
@@ -457,15 +643,26 @@ export default {
     },
     mounted: function () {
         $(document).on("keyup", (e) => {
-            if (this.isPlayingLevel && this.allowToNextScene) {
+            if (this.allowToNextScene) {
                 e.preventDefault();
-                this.nextScene();
+                if (e.keyCode == "32") {
+                    this.nextScene();
+                }
             }
         })
     }
 }
 </script>
 <style scoped>
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
 
 #return-menu-button {
     cursor: pointer;
@@ -512,6 +709,7 @@ export default {
     top: 0;
     left: 0;
     z-index: 1;
+    transition: all 0.4s;
 }
 
 .informations-div, .hero-div {
@@ -627,27 +825,77 @@ export default {
         width: 15vw;
         bottom: 0;
         filter: brightness(0.7);
-        transition: transform 1s;
     }
 
 .character-active {
     filter: brightness(1) !important;
 }
 
-.from-right.exit-character {
-    transform: translateX(100vw);
+@keyframes returnLeft {
+    0% {
+        transform: translateX(0vw);
+    }
+    100% {
+        transform: translateX(-40vw);
+    }
 }
 
-.from-left.exit-character {
-    transform: translateX(-100vw);
+@keyframes returnRight {
+    0% {
+        transform: translateX(0vw);
+    }
+    100% {
+        transform: translateX(40vw);
+    }
+}
+
+.from-right-2 {
+    bottom: 5vh !important;
+    right: 16vw;
+    transform: translateX(40vw);
+}
+
+.from-left-2 {
+    bottom: 5vh !important;
+    left: 16vw;
+    transform: translateX(-40vw);
 }
 
 .from-right {
     right: 2vw;
+    transform: translateX(20vw);
 }
 
 .from-left {
     left: 2vw;
+    transform: translateX(-20vw);
+}
+
+.from-right.entrance, .from-right-2.entrance {
+    transition: transform .7s ease-in-out;
+    transform: translateX(0) !important;
+}
+
+.from-left.entrance, .from-left-2.entrance {
+    transition: transform .7s ease-in-out;
+    transform: translateX(0) !important;
+}
+
+.from-left.exit, .from-left-2.exit {
+    animation-name: returnLeft;
+    animation-duration: .7s;
+    animation-fill-mode: forwards;
+}
+
+.from-right.exit, .from-right-2.exit {
+    animation-name: returnRight;
+    animation-duration: .7s;
+    animation-fill-mode: forwards;
+}
+.without-animation {
+    transform: translateX(0) !important;
+    transition: none !important;
+    animation: none !important;
 }
 
 .level-informations, .end-level-informations {
