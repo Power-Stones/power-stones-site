@@ -5,7 +5,9 @@
                 <img src="https://1.bp.blogspot.com/-qn14_M4IDhE/XYWKuIxbzCI/AAAAAAAAb1s/duPwzP0HSJMh3UHsEO_EvUXDFTgxyvKiACLcBGAsYHQ/s2560/anime-sunset-scene-b8-2560x1440.jpg" class="inicial-page-background" />
                 <div class="informations-div animate__animated">
                     <div class="logo">
-                        <img src="../assets/power-stones-logo.png" class="inicial-logo">
+                        <router-link to="/">
+                            <img src="../assets/power-stones-logo.png" class="inicial-logo">
+                        </router-link>
                     </div>
                     <div class="actions-menu">
                         <div class="actions-menu-container">
@@ -143,32 +145,32 @@ export default {
                                 src: "https://uploaddeimagens.com.br/images/004/568/129/full/taiga-teste.png?1691342202",
                                 active: 1,
                                 direction: "left",
-                                entrance: 1,
-                                exit: 0,
+                                entrance_animation: 1,
+                                exit_animation: 0,
                                 withoutAnimation: 0
                             },
                             {
                                 src: "",
                                 active: 0,
                                 direction: "",
-                                entrance: 0,
-                                exit: 0,
+                                entrance_animation: 0,
+                                exit_animation: 0,
                                 withoutAnimation: 0
                             },
                             {
                                 src: "",
                                 active: 0,
                                 direction: "",
-                                entrance: 0,
-                                exit: 0,
+                                entrance_animation: 0,
+                                exit_animation: 0,
                                 withoutAnimation: 0
                             },
                             {
                                 src: "",
                                 active: 0,
                                 direction: "",
-                                entrance: 0,
-                                exit: 0,
+                                entrance_animation: 0,
+                                exit_animation: 0,
                                 withoutAnimation: 0
                             }
                         ],
@@ -187,32 +189,32 @@ export default {
                                 src: "https://uploaddeimagens.com.br/images/004/568/129/full/taiga-teste.png?1691342202",
                                 active: 0,
                                 direction: "left",
-                                entrance: 0,
-                                exit: 0,
+                                entrance_animation: 0,
+                                exit_animation: 0,
                                 withoutAnimation: 1
                             },
                             {
                                 src: "",
                                 active: 0,
                                 direction: "",
-                                entrance: 0,
-                                exit: 0,
+                                entrance_animation: 0,
+                                exit_animation: 0,
                                 withoutAnimation: 0
                             },
                             {
                                 src: "",
                                 active: 0,
                                 direction: "",
-                                entrance: 0,
-                                exit: 0,
+                                entrance_animation: 0,
+                                exit_animation: 0,
                                 withoutAnimation: 0
                             },
                             {
                                 src: "https://uploaddeimagens.com.br/images/004/568/129/full/taiga-teste.png?1691342202",
                                 active: 1,
                                 direction: "right",
-                                entrance: 1,
-                                exit: 0,
+                                entrance_animation: 1,
+                                exit_animation: 0,
                                 withoutAnimation: 0
                             }
                         ],
@@ -231,32 +233,32 @@ export default {
                                 src: "https://uploaddeimagens.com.br/images/004/568/129/full/taiga-teste.png?1691342202",
                                 active: 0,
                                 direction: "left",
-                                entrance: 0,
-                                exit: 0,
+                                entrance_animation: 0,
+                                exit_animation: 0,
                                 withoutAnimation: 1
                             },
                             {
                                 src: "https://uploaddeimagens.com.br/images/004/568/129/full/taiga-teste.png?1691342202",
                                 active: 1,
                                 direction: "left2",
-                                entrance: 1,
-                                exit: 0,
+                                entrance_animation: 1,
+                                exit_animation: 0,
                                 withoutAnimation: 0
                             },
                             {
                                 src: "",
                                 active: 0,
                                 direction: "",
-                                entrance: 0,
-                                exit: 0,
+                                entrance_animation: 0,
+                                exit_animation: 0,
                                 withoutAnimation: 0
                             },
                             {
                                 src: "https://uploaddeimagens.com.br/images/004/568/129/full/taiga-teste.png?1691342202",
                                 active: 0,
                                 direction: "right",
-                                entrance: 0,
-                                exit: 0,
+                                entrance_animation: 0,
+                                exit_animation: 0,
                                 withoutAnimation: 1
                             }
                         ],
@@ -275,32 +277,32 @@ export default {
                                 src: "https://uploaddeimagens.com.br/images/004/568/129/full/taiga-teste.png?1691342202",
                                 active: 0,
                                 direction: "left",
-                                entrance: 0,
-                                exit: 1,
+                                entrance_animation: 0,
+                                exit_animation: 1,
                                 withoutAnimation: 0
                             },
                             {
                                 src: "https://uploaddeimagens.com.br/images/004/568/129/full/taiga-teste.png?1691342202",
                                 active: 0,
                                 direction: "left2",
-                                entrance: 0,
-                                exit: 1,
+                                entrance_animation: 0,
+                                exit_animation: 1,
                                 withoutAnimation: 0
                             },
                             {
                                 src: "",
                                 active: 0,
                                 direction: "",
-                                entrance: 0,
-                                exit: 0,
+                                entrance_animation: 0,
+                                exit_animation: 0,
                                 withoutAnimation: 0
                             },
                             {
                                 src: "https://uploaddeimagens.com.br/images/004/568/129/full/taiga-teste.png?1691342202",
                                 active: 1,
                                 direction: "right",
-                                entrance: 0,
-                                exit: 0,
+                                entrance_animation: 0,
+                                exit_animation: 0,
                                 withoutAnimation: 1
                             }
                         ],
@@ -320,32 +322,32 @@ export default {
                                 src: "",
                                 active: 0,
                                 direction: "",
-                                entrance: 0,
-                                exit: 0,
+                                entrance_animation: 0,
+                                exit_animation: 0,
                                 withoutAnimation: 0
                             },
                             {
                                 src: "",
                                 active: 0,
                                 direction: "",
-                                entrance: 0,
-                                exit: 0,
+                                entrance_animation: 0,
+                                exit_animation: 0,
                                 withoutAnimation: 0
                             },
                             {
                                 src: "",
                                 active: 0,
                                 direction: "",
-                                entrance: 0,
-                                exit: 0,
+                                entrance_animation: 0,
+                                exit_animation: 0,
                                 withoutAnimation: 0
                             },
                             {
                                 src: "https://uploaddeimagens.com.br/images/004/568/129/full/taiga-teste.png?1691342202",
                                 active: 0,
                                 direction: "right",
-                                entrance: 0,
-                                exit: 1,
+                                entrance_animation: 0,
+                                exit_animation: 1,
                                 withoutAnimation: 0
                             }
                         ],
@@ -380,10 +382,10 @@ export default {
                     for (let i = 0; i < characters.length; i++) {
                         let currentCharacter = characters[i];
                         let classText = "";
-                        if (currentCharacter.entrance == 1) {
+                        if (currentCharacter.entrance_animation == 1) {
                             classText = "entrance";
                         }
-                        if (currentCharacter.exit == 1) {
+                        if (currentCharacter.exit_animation == 1) {
                             classText = "exit";
                         }
                         $(charactersElements[i]).addClass(classText);
@@ -538,8 +540,6 @@ export default {
             }, 300);
         },
         endChapter: function () {
-            // Códigos para fechar o frame do capítulo
-            //this.resetAllContainers();
             let chapter = $(".chapter");
             let endChapter = $(".end-chapter");
             let endChapterLogo = $(".end-chapter-container .logo");
@@ -670,6 +670,15 @@ export default {
                 }
             }
         })
+
+        $(document).on("fullscreenchange", function() {
+            let headerContainer = $(".header-container");
+            if (document.fullscreenElement) {
+                headerContainer.hide();
+            } else {
+                headerContainer.show();
+            }
+        });
     }
 }
 </script>
@@ -698,12 +707,8 @@ export default {
     opacity: 0;
 }
 .visual-novel-frame {
-    width: 95vw;
-    max-width: 2000px;
-    max-height: 1000px;
-    height: calc(100vh - 100px);
-    margin: auto;
-    border-radius: 20px;
+    width: 100vw;
+    height: 100vh;
     overflow: hidden;
     background: white;
 }

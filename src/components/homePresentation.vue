@@ -3,8 +3,7 @@
         <div class="container">
             <div class="home-presentation-content">
                 <img src="../assets/power-stones-logo.png" class="img-fluid site-logo" />
-                <p class="subtitle pb-5">In the world</p>
-                <p class="home-phrase">“Existem coisas no universo que não podem ser explicadas, apenas vividas”</p>
+                <h3 class="home-phrase">“Existem coisas no universo que não podem ser explicadas, apenas vividas”</h3>
             </div>
         </div>
     </div>
@@ -20,12 +19,12 @@ export default {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height: 100vh;
+    height: 60vh;
     width: 100vw;
 }
 
 .site-logo {
-    width: calc(50vw + 3rem);
+    width: 30em;
 }
 
 .container {
@@ -42,14 +41,6 @@ export default {
 
 .subtitle, .home-phrase {
     color: white;
-}
-
-.subtitle {
-    font-size: 2.7rem;
-}
-
-.home-phrase {
-    font-size: 1.5rem;
 }
 
 </style>

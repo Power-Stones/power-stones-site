@@ -6,7 +6,10 @@
 
 :root {
     --primary-color: rgb(255, 199, 252);
+    --purple: #A569F2;
+    --purple-low: #8d5acf;
     --white: #fff;
+    --gray: #ececec;
 }
 
 @font-face {
@@ -25,14 +28,45 @@ body {
     font-family: PowerStones, Arial, Helvetica;
 }
 
+.logo {
+    width: fit-content;
+}
+
+.btn {
+    color: var(--white);
+    display: inline-block;
+    border: 2px solid var(--purple);
+    border-radius: 7px;
+    margin: 5px;
+}
+
+    .btn:hover {
+        color: var(--white);
+    }
+
+    .btn:focus {
+        box-shadow: 0 0 5px var(--primary-color);
+    }
+
+.primary {
+    background: var(--purple);
+}
+
+    .primary:hover {
+        background: var(--purple-low);
+        border: 2px solid var(--purple-low);
+    }
+
+    
+
 .page-title {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: var(--purple);
 }
 
     .page-title h2 {
-        font-size: 2.7rem;
         font-weight: 500;
     }
 

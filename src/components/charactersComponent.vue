@@ -18,7 +18,7 @@
                 <div class="swiper-scrollbar"></div>
             </div>
             <div class="character-presentation" v-for="(character, index) in otherCharacters" :id="'character-' + character.id" v-bind:key="index">
-                <p class="character-name">{{ character.name }}</p>
+                <h2 class="character-name">{{ character.name }}</h2>
                 <p class="character-description">{{ character.text }}</p>
             </div>
         </div>
@@ -192,7 +192,6 @@ export default {
 }
 
 .character-name {
-    font-size: 2rem;
     font-weight: 600;
 }
 </style>

@@ -6,7 +6,7 @@
             </div>
             <div class="col-md-6 col-sm-12">
                 <div class="character-informations" :class="controlClass ? 'text-right' : 'text-left'">
-                    <p class="character-name">{{ name }}</p>
+                    <h2 class="character-name">{{ name }}</h2>
                     <p class="character-text">{{ text }}</p>
                 </div>
             </div>
@@ -24,7 +24,6 @@ export default {
     margin: 4rem 0;
 }
 .character-name {
-    font-size: 2rem;
     font-weight: 600;
 }
 </style>

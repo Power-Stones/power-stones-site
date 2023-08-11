@@ -19,6 +19,10 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#about">Sobre</a>
                         </li>
+                        <li class="nav-item nav-buttons">
+                            <button class="btn">Entrar</button>
+                            <button class="btn primary">Registrar</button>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -77,4 +81,11 @@ nav {
     #navbar-site ul li a:hover {
         color: #d6d6d6;
     }
+
+.nav-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding-left: 10px;
+}
 </style>

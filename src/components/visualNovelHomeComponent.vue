@@ -26,7 +26,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 20px;
+    border-radius: 10px;
     overflow: hidden;
     position: relative;
     width: fit-content;
@@ -45,10 +45,10 @@ export default {
     }
 
     .visual-novel-container img {
-        width: 70vw;
+        width: 90vw;
         min-width: 200px;
         max-width: 1200px;
-        border-radius: 20px;
+        border-radius: 10px;
     }
 
     .visual-novel-container i {
