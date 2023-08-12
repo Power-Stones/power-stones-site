@@ -10,7 +10,9 @@
                             <p>Tela cheia</p>
                         </li>
                         <li>
-                            <p>Meu perfil</p>
+                            <router-link to="/profile">
+                                <p>Meu perfil</p>
+                            </router-link>
                         </li>
                         <li>
                             <p>Sair</p>
@@ -27,7 +29,9 @@
                         <p>Tela cheia</p>
                     </li>
                     <li>
-                        <p>Meu perfil</p>
+                        <router-link to="/profile">
+                            <p>Meu perfil</p>
+                        </router-link>
                     </li>
                     <li>
                         <p>Sair</p>
@@ -117,6 +121,14 @@ export default {
 }
 </script>
 <style scoped>
+
+a {
+    color: var(--black) !important;
+}
+
+    a:hover {
+        color: var(--black) !important;
+    }
 
 .visual-novel-header-container {
     display: flex;

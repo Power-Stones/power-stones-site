@@ -10,6 +10,7 @@
     --purple-low: #8d5acf;
     --white: #fff;
     --gray: #ececec;
+    --black: #141414;
 }
 
 @font-face {
@@ -32,12 +33,17 @@ body {
     width: fit-content;
 }
 
+.inicial-logo {
+    width: calc(15vw + 7rem);
+}
+
 .btn {
     color: var(--white);
     display: inline-block;
     border: 2px solid var(--purple);
     border-radius: 7px;
     margin: 5px;
+    width: 100%;
 }
 
     .btn:hover {
@@ -71,11 +77,78 @@ body {
     }
 
 a {
-    text-decoration: none;
+    text-decoration: none !important;
     color: white;
+    display: inline-block;
+    margin: 0 5px;
 }
 
     a:hover {
         color: white;
         text-decoration: underline;
     }
+
+.page {
+    height: 100vh;
+    width: 100vw;
+    padding: 1rem;
+    color: var(--white);
+}
+
+.background-default {
+    background: url('https://1.bp.blogspot.com/-qn14_M4IDhE/XYWKuIxbzCI/AAAAAAAAb1s/duPwzP0HSJMh3UHsEO_EvUXDFTgxyvKiACLcBGAsYHQ/s2560/anime-sunset-scene-b8-2560x1440.jpg') no-repeat center center;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+    .background-default::after {
+        backdrop-filter: blur(20px); /* Ajuste o valor do desfoque conforme necessário */
+        background-color: rgba(0, 0, 0, 0.7);
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+.form-inputs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 95vw;
+    max-width: 500px;
+    min-width: 250px;
+    text-align: center;
+}
+
+input {
+    width: 100%;
+    background: none;
+    color: var(--white);
+    border: 3px solid var(--purple);
+    padding: .5em;
+    border-radius: 10px;
+    margin: .5em 0;
+}
+
+    input:focus {
+        outline: 3px solid var(--primary-color);
+    }
+
+    input::placeholder {
+        color: var(--gray);
+    }
+
+.avatar-g {
+    width: calc(5rem + 10vw);
+    height: calc(5rem + 10vw);
+    border-radius: 50%;
+    pointer-events: none;
+    user-select: none;
+}

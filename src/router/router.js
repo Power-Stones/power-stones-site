@@ -7,6 +7,7 @@ import homeSite from "../pages/home.vue";
 import visualNovel from "../pages/visualNovel.vue";
 import loginPage from "../pages/loginPage.vue";
 import registerPage from "../pages/registerPage.vue";
+import profilePage from "../pages/profilePage.vue";
 
 const routes = [
     {
@@ -24,6 +25,10 @@ const routes = [
     {
         path: "/register",
         component: registerPage
+    },
+    {
+        path: "/profile",
+        component: profilePage
     }
 ];
 

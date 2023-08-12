@@ -20,8 +20,12 @@
                             <a class="nav-link" href="#about">Sobre</a>
                         </li>
                         <li class="nav-item nav-buttons">
-                            <button class="btn">Entrar</button>
-                            <button class="btn primary">Registrar</button>
+                            <router-link to="/login">
+                                <button class="btn">Entrar</button>
+                            </router-link>
+                            <router-link to="/register">
+                                <button class="btn primary">Registrar</button>
+                            </router-link >
                         </li>
                     </ul>
                 </div>

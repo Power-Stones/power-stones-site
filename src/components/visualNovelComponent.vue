@@ -1051,10 +1051,6 @@ export default {
     }
 }
 
-.inicial-logo {
-    width: calc(15vw + 7rem);
-}
-
 .actions-menu-container {
     position: relative;
 }
