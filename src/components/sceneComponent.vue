@@ -1,5 +1,5 @@
 <template>
-    <div class="scene" v-on:click="selectScene()" :class="selected ? 'selected' : ''">
+    <div class="scene" v-on:click="selectScene()" :id="'scene-' + scene.id_scene">
         <div class="scene-image">
             <img :src="scene.src">
         </div>
@@ -11,24 +11,11 @@ import $ from 'jquery';
 export default {
     name: "sceneComponent",
     props: ["scene"],
-    data() {
-        return {
-            selected: false
-        }
-    },
     methods: {
         selectScene: function () {
-            if (!this.selected) {
-                this.selected = true;
-                $(".scene").removeClass("selected");
-                this.$emit("select_scene", this.scene.id_scene);
-            } else {
-                this.deselectScene();
-            }
-        },
-        deselectScene: function () {
-            this.selected = false;
-            this.$emit("deselect_scene", this.scene.id_scene);
+            $(".scene").removeClass("selected");
+            $("#scene-" + this.scene.id_scene).addClass("selected");
+            this.$emit("select_scene", this.scene.id_scene);
         }
     }
 }
@@ -36,9 +23,24 @@ export default {
 <style scoped>
 .scene-image img {
     width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: .7rem;
 }
 
 .selected {
     border: 2px solid var(--purple);
 }
+
+.scene {
+    width: fit-content;
+    padding: .7rem;
+    margin: .7rem;
+    border-radius: 10px;
+}
+
+    .scene p {
+        margin: 0;
+    }
 </style>

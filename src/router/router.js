@@ -10,6 +10,8 @@ import registerPage from "../pages/registerPage.vue";
 import profilePage from "../pages/profilePage.vue";
 import adminPage from "../pages/adminPage.vue";
 
+import testeComponent from "../pages/testeComponent.vue";
+
 const routes = [
     {
         path: '/',
@@ -34,6 +36,10 @@ const routes = [
     {
         path: "/admin",
         component: adminPage
+    },
+    {
+        path: "/teste",
+        component: testeComponent
     }
 ];
 

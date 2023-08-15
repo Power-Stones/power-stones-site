@@ -1,5 +1,5 @@
 <template>
-    <div class="chapter" v-on:click="selectChapter()" :class="selected ? 'selected' : ''">
+    <div class="chapter" v-on:click="selectChapter()" :id="'chapter-' + chapter.chapter_id">
         <div class="chapter-image">
             <img :src="chapter.level_background">
         </div>
@@ -12,24 +12,11 @@ import $ from 'jquery';
 export default {
     name: "chapterComponent",
     props: ["chapter"],
-    data() {
-        return {
-            selected: false
-        }
-    },
     methods: {
         selectChapter: function () {
-            if (!this.selected) {
-                this.selected = true;
-                $(".chapter").removeClass("selected");
-                this.$emit("select_chapter", this.chapter.chapter_id);
-            } else {
-                this.deselectChapter();
-            }
-        },
-        deselectChapter: function () {
-            this.selected = false;
-            this.$emit("deselect_chapter", this.chapter.chapter_id);
+            $(".chapter").removeClass("selected");
+            $("#chapter-" + this.chapter.chapter_id).addClass("selected");
+            this.$emit("select_chapter", this.chapter.chapter_id);
         }
     }
 }
@@ -37,9 +24,22 @@ export default {
 <style scoped>
 .chapter-image img {
     width: 200px;
+    border-radius: 10px;
+    margin-bottom: .7rem;
 }
 
 .selected {
     border: 2px solid var(--purple);
 }
+
+.chapter {
+    width: fit-content;
+    padding: .7rem;
+    margin: .7rem;
+    border-radius: 10px;
+}
+
+    .chapter p {
+        margin: 0;
+    }
 </style>
