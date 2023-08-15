@@ -8,6 +8,7 @@ import visualNovel from "../pages/visualNovel.vue";
 import loginPage from "../pages/loginPage.vue";
 import registerPage from "../pages/registerPage.vue";
 import profilePage from "../pages/profilePage.vue";
+import adminPage from "../pages/adminPage.vue";
 
 const routes = [
     {
@@ -29,6 +30,10 @@ const routes = [
     {
         path: "/profile",
         component: profilePage
+    },
+    {
+        path: "/admin",
+        component: adminPage
     }
 ];
 

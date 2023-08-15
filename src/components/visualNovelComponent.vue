@@ -44,11 +44,11 @@
                     </div>
                 </div>
             </div>
-            <div class="chapter animate__animated">
-                <transition name="fade" v-if="currentLevel.scenes[currentScene].have_next_scene == 0">
-                    <img :src="currentLevel.scenes[currentScene].background" :key="currentLevel.scenes[currentScene].id_scene" class="chapter-background" />
+            <div class="chapter animate__animated" v-if="currentScene != null">
+                <transition name="fade" v-if="currentScene.have_next_scene == 0">
+                    <img :src="currentScene.background" :key="currentScene.id_scene" class="chapter-background" />
                 </transition>
-                <img v-else :src="currentLevel.scenes[currentScene].background" :key="currentLevel.scenes[currentScene].id_scene" class="chapter-background" />
+                <img v-else :src="currentScene.background" :key="currentScene.id_scene" class="chapter-background" />
                 
                 <div class="chapter-container">
                     <div class="chapter-name">
@@ -57,7 +57,7 @@
                     </div>
                     <div class="interactive-scene-container">
                         <div class="characters">
-                            <img v-for="(character, index) in currentLevel.scenes[currentScene].characters" 
+                            <img v-for="(character, index) in currentScene.characters" 
                                 :key="index" 
                                 :src="character.src"
                                 :class="{
@@ -70,22 +70,22 @@
                                 }"
                             />
                         </div>
-                        <div class="interaction-container" :style="currentLevel.scenes[currentScene - 1] != undefined && currentLevel.scenes[currentScene - 1].next_depends_choice == 1 ? 'display: none;' : 'display: flex;'">
-                            <h6>{{ currentLevel.scenes[currentScene].title }}</h6>
-                            <p class="scene-text" id="scene-text" :style="currentLevel.scenes[currentScene].text == '' ? 'display: none;' : ''"></p>
-                            <div class="choice-container" :style="currentLevel.scenes[currentScene].text == '' && currentLevel.scenes[currentScene].text_choice_1 != '' ? 'display: block;' : 'display: none;'">
+                        <div class="interaction-container" :style="currentScene != null && currentScene.is_final_scene != 0  ? 'display: none;' : 'display: flex;'">
+                            <h6>{{ currentScene.title }}</h6>
+                            <p class="scene-text" id="scene-text" :style="currentScene.text == '' ? 'display: none;' : ''"></p>
+                            <div class="choice-container" :style="currentScene.text == '' && currentScene.text_choice_1 != '' ? 'display: block;' : 'display: none;'">
                                 <ul>
                                     <li v-on:click="chooseChoice(1)">
-                                        <p class="scene-text">{{ currentLevel.scenes[currentScene].text_choice_1 }}</p>
+                                        <p class="scene-text">{{ currentScene.text_choice_1 }}</p>
                                     </li>
                                     <li v-on:click="chooseChoice(2)">
-                                        <p class="scene-text">{{ currentLevel.scenes[currentScene].text_choice_2 }}</p>
+                                        <p class="scene-text">{{ currentScene.text_choice_2 }}</p>
                                     </li>
                                 </ul>
                             </div>
-                            <i class="fas fa-caret-right next-scene" v-on:click="nextScene()" v-if="currentLevel.scenes[currentScene].text_choice_1 == '' && allowToNextScene"></i>
+                            <i class="fas fa-caret-right next-scene" v-on:click="nextScene()" v-if="currentScene.text_choice_1 == '' && allowToNextScene"></i>
                         </div>
-                        <i class="fas fa-caret-right next-scene-final" v-on:click="nextScene()" :style="currentLevel.scenes[currentScene - 1] != undefined && currentLevel.scenes[currentScene - 1].next_depends_choice == 1 ? 'display: block;' : 'display: none;'"></i>
+                        <i class="fas fa-caret-right next-scene-final" v-on:click="nextScene()" :style="currentLevel != null && currentScene.is_final_scene != 0 ? 'display: block;' : 'display: none;'"></i>
                     </div>
                 </div>
             </div>
@@ -122,13 +122,11 @@ export default {
     data() {
         return {
             allowToNextScene: false,
-            currentScene: 0,
+            currentScene: null,
             userNovelStatus: {
                 user_id: 1,
                 last_level_completed: 0,
-                first_phase_choice: 0,
-                second_phase_choice: 0,
-                third_phase_choice: 0
+                first_phase_choice: 0
             },
             currentLevel: {
                 chapter_id: 1,
@@ -138,7 +136,7 @@ export default {
                 level_background: "https://images3.alphacoders.com/132/1322308.jpeg",
                 scenes: [
                     {
-                        id_scene: 0,
+                        id_scene: 1,
                         background: "https://i.pinimg.com/originals/3c/7a/fc/3c7afc1b68c0f8cc367dd9d0f1f383de.jpg",
                         characters: [
                             {
@@ -178,11 +176,14 @@ export default {
                         text: "Como você pode fazer isso, Jack? Eu ... Eu confiei em você! Eu vivia com desespero e desgosto desse doutor Carlos, e agora você faz isso? A gente não pode confiar em ninguém mais!",
                         is_final_scene: 0,
                         have_next_scene: 0,
+                        next_scene_id: 2,
+                        choice_1_next_scene_id: 0,
+                        choice_2_next_scene_id: 0,
                         text_choice_1: "",
                         text_choice_2: ""
                     },
                     {
-                        id_scene: 1,
+                        id_scene: 2,
                         background: "https://img.freepik.com/fotos-premium/tarde-por-do-sol-ceu-nuvens-paisagem-anime-background-generative-ai_117038-3743.jpg?w=2000",
                         characters: [
                             {
@@ -222,11 +223,14 @@ export default {
                         text: "Você entendeu errado Ana! A pedra está te controlando! Por favor ... Volte para si!",
                         is_final_scene: 0,
                         have_next_scene: 1,
+                        next_scene_id: 3,
+                        choice_1_next_scene_id: 0,
+                        choice_2_next_scene_id: 0,
                         text_choice_1: "",
                         text_choice_2: ""
                     },
                     {
-                        id_scene: 2,
+                        id_scene: 3,
                         background: "https://img.freepik.com/fotos-premium/tarde-por-do-sol-ceu-nuvens-paisagem-anime-background-generative-ai_117038-3743.jpg?w=2000",
                         characters: [
                             {
@@ -265,12 +269,15 @@ export default {
                         title: "Jack",
                         text: "Eu sei que você ainda está aí, por favor, escute minha voz!",
                         is_final_scene: 0,
+                        next_scene_id: 4,
                         have_next_scene: 1,
+                        choice_1_next_scene_id: 0,
+                        choice_2_next_scene_id: 0,
                         text_choice_1: "",
                         text_choice_2: ""
                     },
                     {
-                        id_scene: 3,
+                        id_scene: 4,
                         background: "https://img.freepik.com/fotos-premium/tarde-por-do-sol-ceu-nuvens-paisagem-anime-background-generative-ai_117038-3743.jpg?w=2000",
                         characters: [
                             {
@@ -309,13 +316,15 @@ export default {
                         title: "Você vai terminar com ela?",
                         text: "",
                         is_final_scene: 0,
-                        next_depends_choice: 1,
+                        next_scene_id: 0,
+                        choice_1_next_scene_id: 5,
+                        choice_2_next_scene_id: 0,
                         have_next_scene: 0,
                         text_choice_1: "Sim",
                         text_choice_2: "Não"
                     },
                     {
-                        id_scene: 4,
+                        id_scene: 5,
                         background: "https://i.pinimg.com/originals/b5/fd/3f/b5fd3fbe984103e08b9482471484394b.gif",
                         characters: [
                             {
@@ -354,7 +363,9 @@ export default {
                         title: "",
                         text: "",
                         is_final_scene: 1,
-                        next_depends_choice: 0,
+                        next_scene_id: 0,
+                        choice_1_next_scene_id: 0,
+                        choice_2_next_scene_id: 0,
                         have_next_scene: 0,
                         text_choice_1: "",
                         text_choice_2: ""
@@ -367,9 +378,9 @@ export default {
         chooseChoice: function (choiceNumber) {
             console.log(choiceNumber)
             if (choiceNumber == 1) {
-                this.nextScene();
+                this.nextScene(this.currentScene.choice_1_next_scene_id);
             } else if (choiceNumber == 2) {
-                this.endChapter();
+                this.nextScene(this.currentScene.choice_2_next_scene_id);
             }
             
         },
@@ -377,7 +388,7 @@ export default {
             let interval = setInterval(() => {
                 if ($(".chapter").is(":visible")) {
                     clearTimeout(interval);
-                    let characters = this.currentLevel.scenes[this.currentScene].characters;
+                    let characters = this.currentScene.characters;
                     let charactersElements = $(".characters img");
                     for (let i = 0; i < characters.length; i++) {
                         let currentCharacter = characters[i];
@@ -404,26 +415,29 @@ export default {
         },
         beginChapter: function (fromFinal = false) {
             this.resetAllContainers();
+            this.currentScene = this.currentLevel.scenes[0];
 
-            let beginChapter = $(".begin-chapter");
-            let chapter = $(".chapter");
-            if (!fromFinal) {
-                beginChapter.addClass("animate__fadeOut");
-                setTimeout(() => {
-                    beginChapter.hide();
-                }, 300);
-            }
-            
             setTimeout(() => {
-                chapter.show().css("opacity", 0);
-                setTimeout(() => {
-                    chapter.addClass("animate__fadeIn").css("opacity", 1);
+                let beginChapter = $(".begin-chapter");
+                let chapter = $(".chapter");
+                if (!fromFinal) {
+                    beginChapter.addClass("animate__fadeOut");
                     setTimeout(() => {
-                        this.animateTextWithLineBreaks(this.currentLevel.scenes[this.currentScene].text);
-                        this.mountCharactersAnimationsClasses();
-                    }, 300)
-                }, 1)
-            }, 300)
+                        beginChapter.hide();
+                    }, 300);
+                }
+
+                setTimeout(() => {
+                    chapter.show().css("opacity", 0);
+                    setTimeout(() => {
+                        chapter.addClass("animate__fadeIn").css("opacity", 1);
+                        setTimeout(() => {
+                            this.animateTextWithLineBreaks(this.currentScene.text);
+                            this.mountCharactersAnimationsClasses();
+                        }, 300)
+                    }, 1)
+                }, 300)
+            }, 1)
         },
         animateTextWithLineBreaks: function (text) {
             let self = this;
@@ -466,23 +480,27 @@ export default {
             span.textContent = text;
             return span;
         },
-        nextScene: function () {
+        nextScene: function (sceneId) {
             this.allowToNextScene = false;
-            
-            if (this.currentLevel.scenes[this.currentScene].is_final_scene == 1) {
+            if (this.currentScene.is_final_scene == 1 || (sceneId != undefined && sceneId == 0)) {
                 this.endChapter();
                 return;
-            } else {
-                setTimeout(() => {
-                    setTimeout(() => {
-                        setTimeout(() => {
-                            this.animateTextWithLineBreaks(this.currentLevel.scenes[this.currentScene].text);
-                            this.mountCharactersAnimationsClasses();
-                        }, 1)
-                        this.currentScene++;
-                    }, 1)
-                }, 300)
             }
+
+            let nextSceneId = this.currentScene.next_scene_id;
+
+            if (sceneId != undefined) {
+                nextSceneId = sceneId;
+            }
+
+            this.currentScene = this.currentLevel.scenes.find(obj => obj.id_scene == nextSceneId);
+
+            setTimeout(() => {
+                setTimeout(() => {
+                    this.animateTextWithLineBreaks(this.currentScene.text);
+                    this.mountCharactersAnimationsClasses();
+                }, 1)
+            }, 300)
         },  
         resetAllContainers: function (from_menu = false) {
             let inicialPage = $(".inicial-page");
@@ -508,7 +526,7 @@ export default {
             endLevelInformations.removeClass("animate__fadeIn");
             chapter.removeClass("animate__fadeIn").removeClass("animate__fadeOut");
 
-            this.currentScene = 0;
+            this.currentScene = null;
         },
         goToHistory: function (history_id) {
             console.log(history_id)
@@ -554,6 +572,7 @@ export default {
                         endChapterLogo.addClass("animate__fadeInDown");
                         setTimeout(() => {
                             endLevelInformations.addClass("animate__fadeIn");
+                            this.currentScene = null;
                         }, 200)
                     }, 200)
                 }, 1)

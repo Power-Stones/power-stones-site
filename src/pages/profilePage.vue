@@ -55,7 +55,7 @@
                     </div>
                     <div class="profile-content" v-if="isAchievements">
                         <div class="achievements" v-for="achievement in achievements" :key="achievement.id">
-                            <div class="achievement-core">
+                            <div class="achievement-core" :class="achievement.reached ? 'item-active' : ''">
                                 <p class="achievement-title">{{ achievement.title }}</p>
                             </div>
                             <p class="achievement-description">{{ achievement.description }}</p>
@@ -63,7 +63,7 @@
                     </div>
                     <div class="profile-content" v-if="isChoices">
                         <div class="choices" v-for="choice in choices" :key="choice.id">
-                            <div class="choice-core">
+                            <div class="choice-core" :class="choice.reached ? 'item-active' : ''">
                                 <p class="choice-title">{{ choice.title }}</p>
                             </div>
                             <p class="choice-description">{{ choice.description }}</p>
@@ -71,7 +71,7 @@
                     </div>
                     <div class="profile-content" v-if="isTimeline">
                         <div class="timeline-item" v-for="item in timeline" :key="item.id">
-                            <div class="choice-core">
+                            <div class="timeline-core" :class="item.reached ? 'item-active' : ''">
                                 <p class="choice-title">{{ item.title }}</p>
                             </div>
                         </div>
@@ -97,20 +97,23 @@ export default {
                 {
                     id: 1,
                     title: "Entrou no mundo",
-                    description: "Se registrou em Power Stones"
+                    description: "Se registrou em Power Stones",
+                    reached: 1
                 }
             ],
             choices: [
                 {
                     id: 1,
                     title: "Deixe a vida me levar",
-                    description: "Chegue ao final canônico"
+                    description: "Chegue ao final canônico",
+                    reached: 0
                 }
             ],
             timeline: [
                 {
                     id: 1,
-                    title: "I Jack! Mike! Tony!"
+                    title: "Jack! Mike! Tony!",
+                    reached: 0
                 }
             ]
         }
@@ -209,8 +212,8 @@ export default {
 
     .img-container i {
         position: absolute;
-        right: 0;
-        bottom: 0;
+        right: .5vw;
+        bottom: .5vw;
         width: 2.5em;
         height: 2.5em;
         display: flex;
@@ -224,6 +227,42 @@ export default {
         .img-container i:hover {
             background: var(--purple-low);
         }
+
+.achievement-core, .choice-core, .timeline-core {
+    width: 9em;
+    height: 9em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: transparent;
+    border: 2px solid var(--purple);
+    padding: 1em;
+    margin-bottom: 1em;
+}    
+
+.achievements, .choices, .timeline-item {
+    width: 9em;
+    margin: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    .achievements p, .choices p, .timeline-item p {
+        margin: 0;
+        display: inline-block;
+    }
+
+.item-active {
+    background: var(--purple);
+}
+
+.profile-content {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
 
 @media (max-width: 768px) {
 
