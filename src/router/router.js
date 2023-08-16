@@ -9,6 +9,8 @@ import loginPage from "../pages/loginPage.vue";
 import registerPage from "../pages/registerPage.vue";
 import profilePage from "../pages/profilePage.vue";
 import adminPage from "../pages/adminPage.vue";
+import listChaptersAndScenes from "../components/listChaptersAndScenes.vue";
+import createChapter from "../components/createChapter.vue";
 
 import testeComponent from "../pages/testeComponent.vue";
 
@@ -35,8 +37,20 @@ const routes = [
     },
     {
         path: "/admin",
-        component: adminPage
+        component: adminPage,
+        children: [
+            {
+                path: '',
+                component: listChaptersAndScenes
+            },
+            {
+                path: "create-chapter:id?",
+                component: createChapter
+            }
+        ]
     },
+
+    
     {
         path: "/teste",
         component: testeComponent
