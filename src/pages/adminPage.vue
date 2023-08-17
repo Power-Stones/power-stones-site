@@ -16,3 +16,5 @@ export default {
     name: "adminPage"
 }
 </script>
+<style scoped>
+</style>

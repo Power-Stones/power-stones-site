@@ -10,11 +10,11 @@ import $ from 'jquery';
 
 export default {
     name: "sceneComponent",
-    props: ["scene"],
+    props: ["scene", "parentElementId"],
     methods: {
         selectScene: function () {
-            $(".scene").removeClass("selected");
-            $("#scene-" + this.scene.id_scene).addClass("selected");
+            $("#" + this.parentElementId + " .scene").removeClass("selected");
+            $("#" + this.parentElementId + " #scene-" + this.scene.id_scene).addClass("selected");
             this.$emit("select_scene", this.scene.id_scene);
         }
     }

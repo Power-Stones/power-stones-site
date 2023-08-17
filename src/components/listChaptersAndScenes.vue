@@ -70,7 +70,7 @@ export default {
             this.$router.push("/admin/create-chapter?id=" + this.selectedChapter.chapter_id);
         },
         editScene: function () {
-            console.log("Editar cena " + this.selectedScene.id_scene);
+            this.$router.push("/admin/create-scene?id=" + this.selectedChapter.chapter_id + "?chapterId=" + this.selectedScene.id_scene);
         },
         createChapter: function () {
             this.$router.push("/admin/create-chapter?id=");

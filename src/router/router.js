@@ -11,6 +11,7 @@ import profilePage from "../pages/profilePage.vue";
 import adminPage from "../pages/adminPage.vue";
 import listChaptersAndScenes from "../components/listChaptersAndScenes.vue";
 import createChapter from "../components/createChapter.vue";
+import createScene from "../components/createScene.vue";
 
 import testeComponent from "../pages/testeComponent.vue";
 
@@ -46,6 +47,10 @@ const routes = [
             {
                 path: "create-chapter:id?",
                 component: createChapter
+            },
+            {
+                path: "create-scene:id?:chapterId?",
+                component: createScene
             }
         ]
     },
